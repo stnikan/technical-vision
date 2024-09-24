@@ -1,13 +1,11 @@
 import cv2
 import numpy
 
-path = "./im_1.jpg"
+path = "./lab1/im_1.jpg"
 winName = "test_window"
 cv2.namedWindow(winName)
 img = cv2.imread(path, # путь до изображения
     flags=cv2.IMREAD_COLOR) # параметр(ы) чтения
-#cv2.resize
-#cv2.COLOR_BGR2GRAY()
 
 height, weight= img.shape[0:2]
 
