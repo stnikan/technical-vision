@@ -6,7 +6,7 @@ def nothing(x):
     pass
 
 
-path = "./2-0.jpg"
+path = "./lab2/2-0.jpg"
 winName = "test_window"
 cv2.namedWindow(winName, cv2.WINDOW_GUI_EXPANDED)
 
@@ -59,19 +59,17 @@ img2 = adaptive_img
 
 brows, bcols = img1.shape[:2]
 rows,cols = img2.shape
-# Ниже я изменил roi, чтобы картинка выводилась посередине, а не в левом верхнем углу
-roi = img1[int(brows/2)-int(rows/2):int(brows/2)+int(rows/2), int(bcols/2)- 
-int(cols/2):int(bcols/2)+int(cols/2) ]
 
 img2gray = img2
 ret, mask = cv2.threshold(img2gray, 10, 255, cv2.THRESH_BINARY)
 mask_inv = cv2.bitwise_not(mask)
 
-img1_bg = cv2.bitwise_and(roi,roi,mask = mask_inv)
+img1_bg = cv2.bitwise_and(img1,img1,mask = mask_inv)
 
 img2_fg = cv2.bitwise_and(img2,img2,mask = mask)
 
 dst = cv2.add(img1_bg,img2_fg)
-img1[int(brows/2)-int(rows/2):int(brows/2)+int(rows/2), int(bcols/2)- 
-int(cols/2):int(bcols/2)+int(cols/2) ] = dst
-cv2.imwrite('res.jpg',img1)
+img1 = dst
+cv2.imshow(winName, img1)
+key = cv2.waitKey()
+#cv2.imwrite('res.jpg',img1)
