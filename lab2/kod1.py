@@ -18,13 +18,13 @@ cv2.imshow(winName, img)
 key = cv2.waitKey()
 ###################################################################
 #блок ручного пооиска
-'''threshold_new, new_img = cv2.threshold(img, 19, 255,  cv2.THRESH_BINARY) #ручной поиск птиц
+"""threshold_new, new_img = cv2.threshold(img, 19, 255,  cv2.THRESH_BINARY) #ручной поиск птиц
 cv2.imshow(winName, new_img) 
 key = cv2.waitKey() 
 
 threshold_new, new_img = cv2.threshold(img, 19, 255,  cv2.THRESH_BINARY_INV) #ручной поиск фона
 cv2.imshow(winName, new_img) 
-key = cv2.waitKey() '''
+key = cv2.waitKey() """
 #конец ручного поиска
 ###################################################################
 
