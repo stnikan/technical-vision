@@ -16,7 +16,8 @@ height, weight = img.shape[0:2]
 
 cv2.imshow(winName, img)
 key = cv2.waitKey()
-
+###################################################################
+#блок ручного пооиска
 '''threshold_new, new_img = cv2.threshold(img, 19, 255,  cv2.THRESH_BINARY) #ручной поиск птиц
 cv2.imshow(winName, new_img) 
 key = cv2.waitKey() 
@@ -24,52 +25,32 @@ key = cv2.waitKey()
 threshold_new, new_img = cv2.threshold(img, 19, 255,  cv2.THRESH_BINARY_INV) #ручной поиск фона
 cv2.imshow(winName, new_img) 
 key = cv2.waitKey() '''
+#конец ручного поиска
+###################################################################
 
+###################################################################
 # адаптивный поиск
 cv2.createTrackbar("polzunok", winName, 60, 200, nothing)
 cv2.createTrackbar("polzunok2", winName, 90, 100, nothing)
+""""
 while (1):
     par = cv2.getTrackbarPos('polzunok', winName)
     par2 = cv2.getTrackbarPos('polzunok2', winName)
-    adaptive_img = cv2.adaptiveThreshold(
-        img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, par2*2+1 , par)
+    adaptive_img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, par2*2+1 , par)
     cv2.imshow(winName, adaptive_img)
     key = cv2.waitKey(100)
     if key == 32:
         break
 
-"""new_img = img.copy()
-for i in range(len(new_img)):
-    for j in range(len(new_img[0])):
-        if adaptive_img[i][j] == 255:
-            new_img[i][j] = new_img[i][j]
-        else:
-            new_img[i][j] = 255
-
-
-cv2.imshow(winName, img)
-key = cv2.waitKey()
-new_win = "new_window"
-cv2.namedWindow(new_win, cv2.WINDOW_GUI_EXPANDED)
-cv2.imshow(new_win, new_img)
+dst = cv2.add(img,adaptive_img)
+cv2.imshow(winName, dst)
 key = cv2.waitKey()"""
+#конец адаптивного поиска
+###################################################################
 
-img1 = img
-img2 = adaptive_img
+###################################################################
+#автоматический поиск
 
-brows, bcols = img1.shape[:2]
-rows,cols = img2.shape
 
-img2gray = img2
-ret, mask = cv2.threshold(img2gray, 10, 255, cv2.THRESH_BINARY)
-mask_inv = cv2.bitwise_not(mask)
-
-img1_bg = cv2.bitwise_and(img1,img1,mask = mask_inv)
-
-img2_fg = cv2.bitwise_and(img2,img2,mask = mask)
-
-dst = cv2.add(img1_bg,img2_fg)
-img1 = dst
-cv2.imshow(winName, img1)
-key = cv2.waitKey()
-#cv2.imwrite('res.jpg',img1)
+#конец автоматического поиска
+###################################################################
