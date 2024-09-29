@@ -5,12 +5,12 @@ import numpy
 def nothing(x):
     pass
 
-
 pathBerd = "./lab2/2-0.jpg"
 pathHuman = "./lab2/2-1.jpg"
 pathZebra = "./lab2/2-2.jpg"
 pathText = "./lab2/2-3.PNG"
 pathMoumt = "./lab2/2-4.png"
+my_img = ["Berd", "Human", "Zebra", "Text", "Moumt", "Camera"]
 
 winNameHand = "Hand"
 winNameAdaptive = "Adaptive"
@@ -19,96 +19,63 @@ winName = "Test Window"
 
 cv2.namedWindow(winName, cv2.WINDOW_GUI_NORMAL)
 
-imgBerd = cv2.imread(pathBerd, flags=cv2.IMREAD_GRAYSCALE)
-imgHuman = cv2.imread(pathHuman, flags=cv2.IMREAD_GRAYSCALE)
-imgZebra = cv2.imread(pathZebra, flags=cv2.IMREAD_GRAYSCALE)
-imgText = cv2.imread(pathText, flags=cv2.IMREAD_GRAYSCALE)
-imgMount = cv2.imread(pathMoumt, flags=cv2.IMREAD_GRAYSCALE)
-
+imgBerd = cv2.resize(cv2.imread(
+    pathBerd, flags=cv2.IMREAD_GRAYSCALE), (1920, 1080))
+imgHuman = cv2.resize(cv2.imread(
+    pathHuman, flags=cv2.IMREAD_GRAYSCALE), (1920, 1080))
+imgZebra = cv2.resize(cv2.imread(
+    pathZebra, flags=cv2.IMREAD_GRAYSCALE), (1920, 1080))
+imgText = cv2.resize(cv2.imread(
+    pathText, flags=cv2.IMREAD_GRAYSCALE), (1920, 1080))
+imgMount = cv2.resize(cv2.imread(
+    pathMoumt, flags=cv2.IMREAD_GRAYSCALE), (1920, 1080))
+height, weight = imgBerd.shape[0:2]
 cap = cv2.VideoCapture(0)
 
-#height, weight = img.shape[0:2] буду определеять по мере надобности???
 
-
-###################################################################
-
-###################################################################
-# блок ручного пооиска
-"""threshold_new, new_img = cv2.threshold(img, 19, 255,  cv2.THRESH_BINARY) #ручной поиск птиц
-cv2.imshow(winName, new_img) 
-key = cv2.waitKey() 
-
-threshold_new, new_img = cv2.threshold(img, 19, 255,  cv2.THRESH_BINARY_INV) #ручной поиск фона
-cv2.imshow(winName, new_img) 
-key = cv2.waitKey() """
-# конец ручного поиска
-###################################################################
-
-###################################################################
-# адаптивный поиск
-# cv2.createTrackbar("polzunok", winName, 60, 200, nothing)
-# cv2.createTrackbar("polzunok2", winName, 90, 100, nothing)
-""""
-while (1):
-    par = cv2.getTrackbarPos('polzunok', winName)
-    par2 = cv2.getTrackbarPos('polzunok2', winName)
-    adaptive_img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, par2*2+1 , par)
-    cv2.imshow(winName, adaptive_img)
-    key = cv2.waitKey(100)
-    if key == 32:
-        break
-
-dst = cv2.add(img,adaptive_img)
-cv2.imshow(winName, dst)
-key = cv2.waitKey()"""
-# конец адаптивного поиска
-###################################################################
-
-###################################################################
-# автоматический поиск
-ThresholdType = ["Ручной","Адаптивный", "Авто"]
+ThresholdType = ["Hand", "Adaptive", "Auto"]
 method = [cv2.THRESH_BINARY, cv2.THRESH_BINARY_INV, cv2.THRESH_TOZERO,
           cv2.THRESH_TOZERO_INV, cv2.THRESH_TRUNC, cv2.THRESH_OTSU, cv2.THRESH_TRIANGLE]
 methodName = ["cv2.THRESH_BINARY", "cv2.THRESH_BINARY_INV", "cv2.THRESH_TOZERO",
               "cv2.THRESH_TOZERO_INV", "cv2.THRESH_TRUNC", "cv2.THRESH_OTSU", "cv2.THRESH_TRIANGLE"]
+methodAdaptive = [cv2.ADAPTIVE_THRESH_MEAN_C, cv2.ADAPTIVE_THRESH_GAUSSIAN_C]
+methodAdaptiveName = ["cv2.ADAPTIVE_THRESH_MEAN_C",
+                      "cv2.ADAPTIVE_THRESH_GAUSSIAN_C"]
 
-'''
-cv2.createTrackbar("type of conversion", winName, 0, 3, nothing)
-cv2.createTrackbar("polzunok", winName, 0, 6, nothing)
-cv2.createTrackbar("polzunok", winName, 0, 6, nothing)
-cv2.createTrackbar("polzunok2", winName, 0, 255, nothing)
 
-while (1):
-    par = cv2.getTrackbarPos('polzunok', winName)
-    par2 = cv2.getTrackbarPos('polzunok2', winName)
-    threshold_new, new_img = cv2.threshold(img,  par2, 255,  method[par])
-
-    new_img = cv2.cvtColor(new_img, cv2.COLOR_GRAY2BGR)
-
-    cv2.putText(new_img, methodName[par], (weight-1040, height-200),
-                cv2.FONT_HERSHEY_DUPLEX, fontScale=2, color=(126, 0, 255), thickness=5)
-    cv2.putText(new_img, str(threshold_new), (weight-240, height-100),
-                cv2.FONT_HERSHEY_DUPLEX, fontScale=2, color=(126, 0, 255), thickness=5)
-
-    cv2.imshow(winName, new_img)
-    key = cv2.waitKey(10)
-    if key == 27:
-        break
-
-# threshold_new, new_img = cv2.threshold(img,  255,  cv2.THRESH_BINARY_INV)
-# cv2.imshow(winName, new_img)
-# key = cv2.waitKey()
-# конец автоматического поиска'''
-###################################################################
 
 
 cv2.createTrackbar("img", winName, 0, 5, nothing)
-cv2.createTrackbar("conversion", winName, 0, 3, nothing)
-cv2.createTrackbar("porog", winName, 0, 255, nothing)
+cv2.createTrackbar("conversion", winName, 0, 2, nothing)
 
-while(1):
+
+flag = 0
+type_Conversion = -1
+index_img = -1
+while (1):
     index_img = cv2.getTrackbarPos('img', winName)
-    type_Conversion = cv2.getTrackbarPos("conversion", winName)
+    if type_Conversion != cv2.getTrackbarPos("conversion", winName):
+        type_Conversion = cv2.getTrackbarPos("conversion", winName)
+        flag = 1
+
+    if flag == 1:  # нарисовать необходимые и специальные ползунки
+        cv2.destroyWindow(winName)
+        cv2.namedWindow(winName, cv2.WINDOW_GUI_NORMAL)
+        cv2.createTrackbar("img", winName, index_img, 5, nothing)
+        cv2.createTrackbar("conversion", winName, type_Conversion, 2, nothing)
+        if type_Conversion == 0:  # для ручного
+            cv2.createTrackbar("type", winName, 0, 4, nothing)
+            cv2.createTrackbar("threshold", winName, 0, 255, nothing)
+        elif type_Conversion == 1:  # для адаптивного
+            # по неизвестным причинам не работают методы 2-4
+            cv2.createTrackbar("type", winName, 0, 1, nothing)
+            cv2.createTrackbar("type_Adaptive", winName, 0, 1, nothing)
+            cv2.createTrackbar("size", winName, 0, 255, nothing)
+            cv2.createTrackbar("constant", winName, 0, 255, nothing)
+        else:  # для автоматического
+            cv2.createTrackbar("type", winName, 0, 1, nothing)
+        flag = 0
+
     if index_img == 0:
         new_img = imgBerd
     elif index_img == 1:
@@ -120,15 +87,50 @@ while(1):
     elif index_img == 4:
         new_img = imgMount
     else:
-        new_img = cv2.cvtColor(cap.read()[1], cv2.COLOR_RGB2GRAY)
+        new_img = cv2.resize(cv2.cvtColor(cap.read()[1], cv2.COLOR_RGB2GRAY), (1920, 1080))
 
     if type_Conversion == 0:
-        threshold_new, new_img = cv2.threshold(new_img, 19, 255,  cv2.THRESH_BINARY)
+        typ = cv2.getTrackbarPos('type', winName)
+        threshold = cv2.getTrackbarPos('threshold', winName)
+        threshold_new, new_img = cv2.threshold(
+            new_img, threshold, 255,  method[typ])
     elif type_Conversion == 1:
-        new_img = cv2.adaptiveThreshold(new_img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 60*2+1 , 90)
+        typ = cv2.getTrackbarPos('type', winName)
+        type_Ada = cv2.getTrackbarPos('type_Adaptive', winName)
+        size = cv2.getTrackbarPos('size', winName)
+        c = cv2.getTrackbarPos('constant', winName)
+        new_img = cv2.adaptiveThreshold(
+            new_img, 255, methodAdaptive[type_Ada], method[typ], size*2+3, c)
     else:
-        threshold_new, new_img = cv2.threshold(new_img, 19, 255, cv2.THRESH_OTSU)
+        typ = cv2.getTrackbarPos('type', winName)
+        threshold_new, new_img = cv2.threshold(new_img, 19, 255, method[typ+5])
+
+    
+    #Подписываем картинку
+    new_img = cv2.cvtColor(new_img, cv2.COLOR_BGR2RGB)
+    cv2.putText(new_img, my_img[index_img], (weight-550, height-400),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+    cv2.putText(new_img, ThresholdType[type_Conversion], (weight-550, height-350),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+    if type_Conversion == 0:
+        cv2.putText(new_img, methodName[typ], (weight-550, height-300),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+        cv2.putText(new_img, str(threshold_new), (weight-550, height-250),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+    elif type_Conversion == 1:
+        cv2.putText(new_img, methodName[typ], (weight-550, height-300),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+        cv2.putText(new_img, methodAdaptiveName[type_Ada], (weight-550, height-250),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+        cv2.putText(new_img, str(size), (weight-550, height-200),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+        cv2.putText(new_img, str(c), (weight-550, height-150),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+    else:
+        cv2.putText(new_img, methodName[typ+5], (weight-550, height-300),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
 
     cv2.imshow(winName, new_img)
     key = cv2.waitKey(100)
-    if key == 32:break
+    if key == 32:
+        break
