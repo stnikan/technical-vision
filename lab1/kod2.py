@@ -14,10 +14,11 @@ dtype=np.uint8, # тип данных
 order='C', # тип хранения многомерных данных
 ) 
 
-cv2.circle(res, (200,100), 90, (0,0,255))
+
+cv2.circle(res, (200,100), 90, (1,255,255))
 cv2.putText(res, "Circle", (110,210), cv2.FONT_ITALIC, fontScale=1 , color = (0,0,0))
 
-cv2.rectangle(res,(50,50),(300,300),(128,0,128)) #BGR
+cv2.rectangle(res,(50,50),(300,300),(128,3,128)) #BGR
 cv2.putText(res, "Rectangle", (50,310), cv2.FONT_HERSHEY_PLAIN, fontScale=0.5 , color = (0,0,0))
 
 h, w = res.shape[0:2]
