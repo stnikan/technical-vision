@@ -5,12 +5,12 @@ import numpy
 def nothing(x):
     pass
 
-pathBerd = "./lab2/2-0.jpg"
+pathBird = "./lab2/2-0.jpg"
 pathHuman = "./lab2/2-1.jpg"
 pathZebra = "./lab2/2-2.jpg"
 pathText = "./lab2/2-3.PNG"
 pathMoumt = "./lab2/2-4.png"
-my_img = ["Berd", "Human", "Zebra", "Text", "Moumt", "Camera"]
+my_img = ["Bird", "Human", "Zebra", "Text", "Moumt", "Camera"]
 
 winNameHand = "Hand"
 winNameAdaptive = "Adaptive"
@@ -19,8 +19,8 @@ winName = "Test Window"
 
 cv2.namedWindow(winName, cv2.WINDOW_GUI_NORMAL)
 
-imgBerd = cv2.resize(cv2.imread(
-    pathBerd, flags=cv2.IMREAD_GRAYSCALE), (1920, 1080))
+imgBird = cv2.resize(cv2.imread(
+    pathBird, flags=cv2.IMREAD_GRAYSCALE), (1920, 1080))
 imgHuman = cv2.resize(cv2.imread(
     pathHuman, flags=cv2.IMREAD_GRAYSCALE), (1920, 1080))
 imgZebra = cv2.resize(cv2.imread(
@@ -29,7 +29,7 @@ imgText = cv2.resize(cv2.imread(
     pathText, flags=cv2.IMREAD_GRAYSCALE), (1920, 1080))
 imgMount = cv2.resize(cv2.imread(
     pathMoumt, flags=cv2.IMREAD_GRAYSCALE), (1920, 1080))
-height, weight = imgBerd.shape[0:2]
+height, weight = imgBird.shape[0:2]
 cap = cv2.VideoCapture(0)
 
 
@@ -77,7 +77,7 @@ while (1):
         flag = 0
 
     if index_img == 0:
-        new_img = imgBerd
+        new_img = imgBird
     elif index_img == 1:
         new_img = imgHuman
     elif index_img == 2:
