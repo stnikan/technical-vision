@@ -122,7 +122,7 @@ while (1):
                 cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
         cv2.putText(new_img, methodAdaptiveName[type_Ada], (weight-550, height-250),
                 cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
-        cv2.putText(new_img, str(size), (weight-550, height-200),
+        cv2.putText(new_img, str(size*2+3), (weight-550, height-200),
                 cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
         cv2.putText(new_img, str(c), (weight-550, height-150),
                 cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
