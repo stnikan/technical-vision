@@ -9,8 +9,8 @@ pathBird = "./lab2/2-0.jpg"
 pathHuman = "./lab2/2-1.jpg"
 pathZebra = "./lab2/2-2.jpg"
 pathText = "./lab2/2-3.PNG"
-pathMoumt = "./lab2/2-4.png"
-my_img = ["Bird", "Human", "Zebra", "Text", "Moumt", "Camera"]
+pathMount = "./lab2/2-4.png"
+my_img = ["Bird", "Human", "Zebra", "Text", "Mount", "Camera"]
 
 winNameHand = "Hand"
 winNameAdaptive = "Adaptive"
@@ -28,7 +28,7 @@ imgZebra = cv2.resize(cv2.imread(
 imgText = cv2.resize(cv2.imread(
     pathText, flags=cv2.IMREAD_GRAYSCALE), (1920, 1080))
 imgMount = cv2.resize(cv2.imread(
-    pathMoumt, flags=cv2.IMREAD_GRAYSCALE), (1920, 1080))
+    pathMount, flags=cv2.IMREAD_GRAYSCALE), (1920, 1080))
 height, weight = imgBird.shape[0:2]
 cap = cv2.VideoCapture(0)
 

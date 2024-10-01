@@ -10,10 +10,12 @@ img1 = cv2.imread(
     pathImg1, flags=cv2.IMREAD_COLOR)
 img2 = cv2.imread(
     pathImg2, flags=cv2.IMREAD_GRAYSCALE)
+
+
 img_new = cv2.blur(
     img1,
-    (10,10),  # размер ядра
-    anchor = (9,9),  # положение якорной точки
+    (100, 100),  # размер ядра
+    anchor=(-1, -1),  # положение якорной точки
     borderType=cv2.BORDER_CONSTANT,  # тип рамки
 )
 cv2.imshow(winName, img_new)
