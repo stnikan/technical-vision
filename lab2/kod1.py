@@ -32,7 +32,6 @@ imgMount = cv2.resize(cv2.imread(
 height, weight = imgBird.shape[0:2]
 cap = cv2.VideoCapture(0)
 
-
 ThresholdType = ["Hand", "Adaptive", "Auto"]
 method = [cv2.THRESH_BINARY, cv2.THRESH_BINARY_INV, cv2.THRESH_TOZERO,
           cv2.THRESH_TOZERO_INV, cv2.THRESH_TRUNC, cv2.THRESH_OTSU, cv2.THRESH_TRIANGLE]
@@ -42,12 +41,8 @@ methodAdaptive = [cv2.ADAPTIVE_THRESH_MEAN_C, cv2.ADAPTIVE_THRESH_GAUSSIAN_C]
 methodAdaptiveName = ["cv2.ADAPTIVE_THRESH_MEAN_C",
                       "cv2.ADAPTIVE_THRESH_GAUSSIAN_C"]
 
-
-
-
 cv2.createTrackbar("img", winName, 0, 5, nothing)
 cv2.createTrackbar("conversion", winName, 0, 2, nothing)
-
 
 flag = 0
 type_Conversion = -1
@@ -104,7 +99,6 @@ while (1):
     else:
         typ = cv2.getTrackbarPos('type', winName)
         threshold_new, new_img = cv2.threshold(new_img, 19, 255, method[typ+5])
-
     
     #Подписываем картинку
     new_img = cv2.cvtColor(new_img, cv2.COLOR_BGR2RGB)
