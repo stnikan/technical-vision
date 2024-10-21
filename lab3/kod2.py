@@ -6,15 +6,13 @@ def nothing(x):
     pass
 
 
-pathImg1 = "./lab3/3-1.PNG"
-pathImg2 = "./lab3/3-2.PNG"
+pathImg1 = "./lab3/3-3.jpg"
+# pathImg2 = "./lab3/3-2.PNG"
 winName = "Border"
 
 cv2.namedWindow(winName, cv2.WINDOW_GUI_NORMAL)
 img1 = cv2.imread(
     pathImg1, flags=cv2.IMREAD_COLOR)
-img2 = cv2.imread(
-    pathImg2, flags=cv2.IMREAD_GRAYSCALE)
 
 height, weight = img1.shape[0:2]
 
@@ -159,6 +157,8 @@ while (1):
     sigmaSpace,  # ширина первого компонента весовой функции
     borderType=All_border[border]  # тип рамки
 )
+    
+
     
     cv2.imshow(winName, img_new)
     key = cv2.waitKey(10)
