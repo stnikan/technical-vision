@@ -43,6 +43,7 @@ def my_func(type, img, size, iterations):
 
 pathImg1 = "./lab4/4-1.jpg"
 pathImg2 = "./lab4/4-2.jpg"
+# pathTestImg = "./lab4/test2.jpeg"
 winName = "test_window"
 
 cv2.namedWindow(winName, cv2.WINDOW_GUI_NORMAL)
@@ -61,13 +62,13 @@ while 1:
     size = cv2.getTrackbarPos("size", winName)+1
     iter = cv2.getTrackbarPos("iterations", winName)+1
     t = cv2.getTrackbarPos("type", winName)
-    img_new = my_func(my_type[t], img, size, iter)
+    # img_new = my_func(my_type[t], img, size, iter)
     img_new_2 = cv2.morphologyEx(img, morph_type[t], kernel=numpy.ones((size, size), dtype=int),
                                  anchor=(-1, -1),
                                  iterations=iter,
                                  borderType=cv2.BORDER_CONSTANT, borderValue=(255, 255, 255),
                                  )
-    img_new -=img_new_2
+    img_new =img_new_2
     cv2.imshow(winName, img_new)
     key = cv2.waitKey(100)
     if key == 27:
