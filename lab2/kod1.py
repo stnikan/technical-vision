@@ -6,7 +6,6 @@ def nothing(x):
     pass
 
 pathBird = "./lab2/2-0.jpg"
-pathBird = "./lab2/test.jpg"
 pathHuman = "./lab2/2-1.jpg"
 pathZebra = "./lab2/2-2.jpg"
 pathText = "./lab2/2-3.PNG"
@@ -103,27 +102,27 @@ while (1):
     
     #Подписываем картинку
     new_img = cv2.cvtColor(new_img, cv2.COLOR_BGR2RGB)
-    # cv2.putText(new_img, my_img[index_img], (weight-550, height-400),
-    #             cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
-    # cv2.putText(new_img, ThresholdType[type_Conversion], (weight-550, height-350),
-    #             cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
-    # if type_Conversion == 0:
-    #     cv2.putText(new_img, methodName[typ], (weight-550, height-300),
-    #             cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
-    #     cv2.putText(new_img, str(threshold_new), (weight-550, height-250),
-    #             cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
-    # elif type_Conversion == 1:
-    #     cv2.putText(new_img, methodName[typ], (weight-550, height-300),
-    #             cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
-    #     cv2.putText(new_img, methodAdaptiveName[type_Ada], (weight-550, height-250),
-    #             cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
-    #     cv2.putText(new_img, str(size*2+3), (weight-550, height-200),
-    #             cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
-    #     cv2.putText(new_img, str(c), (weight-550, height-150),
-    #             cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
-    # else:
-    #     cv2.putText(new_img, methodName[typ+5], (weight-550, height-300),
-    #             cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+    cv2.putText(new_img, my_img[index_img], (weight-550, height-400),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+    cv2.putText(new_img, ThresholdType[type_Conversion], (weight-550, height-350),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+    if type_Conversion == 0:
+        cv2.putText(new_img, methodName[typ], (weight-550, height-300),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+        cv2.putText(new_img, str(threshold_new), (weight-550, height-250),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+    elif type_Conversion == 1:
+        cv2.putText(new_img, methodName[typ], (weight-550, height-300),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+        cv2.putText(new_img, methodAdaptiveName[type_Ada], (weight-550, height-250),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+        cv2.putText(new_img, str(size*2+3), (weight-550, height-200),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+        cv2.putText(new_img, str(c), (weight-550, height-150),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
+    else:
+        cv2.putText(new_img, methodName[typ+5], (weight-550, height-300),
+                cv2.FONT_HERSHEY_DUPLEX, fontScale=1, color=(125, 0, 255), thickness=3)
 
     cv2.imshow(winName, new_img)
     key = cv2.waitKey(100)
