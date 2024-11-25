@@ -9,7 +9,7 @@ def nothing(x):
 pathVideo1 = "./lab5/stop_line_1.mp4"
 pathVideo2 = "./lab5/stop_line_2.mp4"
 
-cap = cv2.VideoCapture(pathVideo2)
+cap = cv2.VideoCapture(pathVideo1)
 
 winName = "test_window"
 cv2.namedWindow(winName, cv2.WINDOW_GUI_NORMAL)
