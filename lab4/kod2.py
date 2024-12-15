@@ -11,7 +11,7 @@ winName = "test_window"
 
 cv2.namedWindow(winName, cv2.WINDOW_GUI_NORMAL)
 
-img = cv2.imread(pathImg2, flags=cv2.IMREAD_COLOR)
+img = cv2.imread(pathImg1, flags=cv2.IMREAD_COLOR)
 
 cv2.createTrackbar("size", winName, 0, 10, nothing)
 cv2.createTrackbar("iterations", winName, 0, 10, nothing)
