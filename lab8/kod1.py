@@ -20,7 +20,7 @@ patternHuMoments = cv2.HuMoments(patternMoments)
 
 
 
-diff = 1e-3
+diff = 10**-3
 difference = []
 
 for i in range(2, len(contours)):
