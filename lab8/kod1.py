@@ -19,11 +19,7 @@ patternMoments = cv2.moments(contours[1], binaryImage = False)
 patternHuMoments = cv2.HuMoments(patternMoments)
 
 
-patternm00 = patternMoments['mu20']
-patternnu = patternMoments['nu20']
-patternnu2 = patternMoments['nu02']
-patternm01 = patternMoments['mu02']
-patternm10 = patternMoments['mu11']
+
 diff = 1e-3
 difference = []
 
@@ -35,8 +31,8 @@ for i in range(2, len(contours)):
     difference[:] = abs(patternHuMoments[:] - HuMoments[:])
 
     if (difference[0] <= diff) & (difference[1] <= diff) &(difference[2] <= diff) & (difference[3] <= diff):
-        if (abs(patternMoments['m00']-Moments['m00'])<=2000) & (abs(patternMoments['mu20']-Moments['mu20'])>200000):
-            cv2.drawContours(img, contours, contourIdx = i, color = [255, 0, 139], thickness = 3, lineType = cv2.LINE_8)
+        # if (abs(patternMoments['m00']-Moments['m00'])<=2000) & (abs(patternMoments['mu20']-Moments['mu20'])>200000):
+        cv2.drawContours(img, contours, contourIdx = i, color = [255, 0, 139], thickness = 3, lineType = cv2.LINE_8)
             
 
 winName = "Test Window"
