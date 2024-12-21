@@ -9,12 +9,12 @@ def nothing(x):
 pathImg = "./lab7/7_1.jpg"
 winName = "Test Window"
 
-cv2.namedWindow(winName)
+cv2.namedWindow(winName, cv2.WINDOW_AUTOSIZE)
 img = cv2.imread(pathImg, flags=cv2.IMREAD_GRAYSCALE)
 img_c = cv2.imread(pathImg, flags=cv2.IMREAD_COLOR)
 height, weight = img.shape[0:2]
-img = cv2.resize(img, (int(height*0.9), int(weight*0.9)))
-img_c = cv2.resize(img_c, (int(height*0.9), int(weight*0.9)))
+img = cv2.resize(img, (int(height*0.5), int(weight*0.5)))
+img_c = cv2.resize(img_c, (int(height*0.5), int(weight*0.5)))
 
 
 grad_x = cv2.Sobel(img,  ddepth=0, dx=1, dy=0, ksize=3, scale=1, delta=0)

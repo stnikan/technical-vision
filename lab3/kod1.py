@@ -12,7 +12,7 @@ winName = "Border"
 
 cv2.namedWindow(winName, cv2.WINDOW_GUI_NORMAL)
 img1 = cv2.imread(
-    pathImg1, flags=cv2.IMREAD_COLOR)
+    pathImg2, flags=cv2.IMREAD_COLOR)
 img2 = cv2.imread(
     pathImg2, flags=cv2.IMREAD_GRAYSCALE)
 

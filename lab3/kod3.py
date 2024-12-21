@@ -41,6 +41,7 @@ while (1):
         left,  # пиксели слева
         right,  # пиксели справа
         borderType=All_border[border] # тип рамки
+        
 
     )
     color_text = (0,0,255)
